@@ -15,14 +15,10 @@ class App extends React.Component {
     }
   }
 //change filter type
-  handleChangeFilterType = (event) => {
-    //console.log('e:', e)
-    
+  handleChangeFilterType =  (event) => {
     this.setState({
       filters: {
-        ...this.state.filters,
         type: event.target.value
-
       }
     })
   }
@@ -30,7 +26,7 @@ class App extends React.Component {
   findPets = () => {
     let url = '/api/pets'
     if (this.state.filters.type !== 'all') {
-      url =+ `?type=${this.state.filters.type}`
+      url += `?type=${this.state.filters.type}`
     }
 
     fetch(url)
@@ -52,7 +48,7 @@ class App extends React.Component {
       }
     })
     this.setState({
-      pet:findPets
+      pets:findPets
     })
   }
 
@@ -65,7 +61,7 @@ class App extends React.Component {
         <div className="ui container">
           <div className="ui grid">
             <div className="four wide column">
-              <Filters filters={this.state.filters} onChangeType={this.handleChangeFilterType}
+              <Filters onChangeType={this.handleChangeFilterType}
                onFindPetsClick={this.findPets}/>
             </div>
             <div className="twelve wide column">
